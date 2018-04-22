@@ -10,7 +10,7 @@ IMG_CENTER_SIZE = 20
 NUM_CLASSES = 10
 NUM_PROCESS_STEPS = 4
 
-def get():
+def get_data():
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     x_train = format_x(x_train)
@@ -24,7 +24,7 @@ def get():
 def format_x(x):
     x = np.array(x)
     x = x.reshape(x.shape[0], IMG_SIZE, IMG_SIZE, 1)
-    x = x.astype('float32')
+    x = x.astype("float32")
     x /= 255
     return x
 

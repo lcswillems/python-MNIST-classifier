@@ -1,25 +1,27 @@
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout
 
-import data
+import utils
 
 def linear():
     model = Sequential()
-    model.add(Flatten(input_shape=data.IMG_SHAPE))
 
-    model.add(Dense(data.NUM_CLASSES))
+    model.add(Flatten(input_shape=utils.IMG_SHAPE))
+
+    model.add(Dense(utils.NUM_CLASSES))
     model.add(Activation("softmax"))
 
     return model
 
 def mlp():
     model = Sequential()
-    model.add(Flatten(input_shape=data.IMG_SHAPE))
+    
+    model.add(Flatten(input_shape=utils.IMG_SHAPE))
 
     model.add(Dense(128))
     model.add(Activation("relu"))
 
-    model.add(Dense(data.NUM_CLASSES))
+    model.add(Dense(utils.NUM_CLASSES))
     model.add(Activation("softmax"))
 
     return model
@@ -28,7 +30,7 @@ def cnn():
     model = Sequential()
 
     model.add(Conv2D(32, kernel_size=(3, 3),
-                     input_shape=data.IMG_SHAPE))
+                     input_shape=utils.IMG_SHAPE))
     model.add(Activation("relu"))
 
     model.add(Conv2D(64, (3, 3)))
@@ -41,7 +43,7 @@ def cnn():
     model.add(Dense(128))
     model.add(Activation("relu"))
 
-    model.add(Dense(data.NUM_CLASSES))
+    model.add(Dense(utils.NUM_CLASSES))
     model.add(Activation("softmax"))
 
     return model

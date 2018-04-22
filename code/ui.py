@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QLa
 
 import numpy as np
 
-import data
+import utils
 
 class ImageLabel(QLabel):
     def image(self):
@@ -72,12 +72,12 @@ def build(model):
         nonlocal digit_label, prepro_digit_labels, classif_labels, model
 
         img = digit_label.image()
-        imgs = data.preprocess(img)
+        imgs = utils.preprocess(img)
 
         for i, img in enumerate(imgs):
             prepro_digit_labels[i].setImage(img)
 
-        x = data.format_x([imgs[-1]])
+        x = utils.format_x([imgs[-1]])
         y = model.predict(x)
         
         distr = y[0]
@@ -107,11 +107,11 @@ def build(model):
 
     digit_label = DigitLabel()
     digit_label.mouseReleaseEvent = classify
-    digit_grid.addWidget(digit_label, 0, 0, data.NUM_PROCESS_STEPS, 1, Qt.AlignCenter)
+    digit_grid.addWidget(digit_label, 0, 0, utils.NUM_PROCESS_STEPS, 1, Qt.AlignCenter)
 
     prepro_digit_labels = []
     
-    for i in range(data.NUM_PROCESS_STEPS):
+    for i in range(utils.NUM_PROCESS_STEPS):
         row = i
 
         prepro_digit_label = ImageLabel()
@@ -126,7 +126,7 @@ def build(model):
 
     classif_labels = []
 
-    for i in range(data.NUM_CLASSES):
+    for i in range(utils.NUM_CLASSES):
         class_label = QLabel(str(i))
         class_label.setStyleSheet("padding: 2px 4px")
         classif_grid.addWidget(class_label, i, 0, Qt.AlignCenter)
