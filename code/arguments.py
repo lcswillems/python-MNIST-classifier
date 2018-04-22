@@ -4,7 +4,7 @@ def get_args():
     parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
     parser.add_argument(
         "--mode",
-        help="""Mode d'utilisation du modèle : 'train', 'test' ou 'use' (REQUIRED)
+        help="""Mode d'utilisation : 'train', 'test' ou 'use' (REQUIRED)
     - train: Entraîne le modèle sur les données d'entraînement
     - test: Teste le modèle sur les données de test
     - use: Utilise le modèle pour classifier de nouveaux chiffres""",
@@ -28,7 +28,7 @@ def get_args():
     )
     parser.add_argument(
         "--lr",
-        help="Learning rate utilisé par l'optimiseur (default: 0.0002)",
+        help="Taux d'apprentissage utilisé par l'optimiseur (default: 0.0002)",
         type=float,
         default=2e-4
     )
