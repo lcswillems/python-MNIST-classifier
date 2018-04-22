@@ -13,7 +13,7 @@ def linear():
 
     return model
 
-def mlp():
+def densenet():
     model = Sequential()
     
     model.add(Flatten(input_shape=utils.IMG_SHAPE))
@@ -26,14 +26,14 @@ def mlp():
 
     return model
 
-def cnn():
+def convnet():
     model = Sequential()
 
     model.add(Conv2D(32, kernel_size=(3, 3),
                      input_shape=utils.IMG_SHAPE))
     model.add(Activation("relu"))
 
-    model.add(Conv2D(64, (3, 3)))
+    model.add(Conv2D(64, kernel_size=(3, 3)))
     model.add(Activation("relu"))
     
     model.add(MaxPooling2D(pool_size=(2, 2)))
