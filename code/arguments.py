@@ -1,45 +1,35 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, RawTextHelpFormatter
 
 def get_args():
-    parser = ArgumentParser()
+    parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
     parser.add_argument(
-        "--model",
-        help="Nom du modèle",
+        "--mode",
+        help="""Mode d'utilisation du modèle : 'train', 'test' ou 'use' (REQUIRED)
+    - train: Entraîne le modèle sur les données d'entraînement
+    - test: Teste le modèle sur les données de test
+    - use: Utilise le modèle pour classifier de nouveaux chiffres""",
         required=True
     )
     parser.add_argument(
-        "--train",
-        help="Entraine le modèle sur les données d'entraînement",
-        action="store_true",
-        default=False
+        "--model",
+        help="Nom du modèle (REQUIRED)",
+        required=True
     )
     parser.add_argument(
         "--epochs",
-        help="Nombre de passages sur les données d'entraînement pour entrainer le modèle",
-        default=1,
-        type=int
+        help="Nombre d'entraînement du modèle sur toutes les données d'entraînement (default: 1)",
+        type=int,
+        default=1
     )
     parser.add_argument(
         "--optimizer",
-        help="Optimiseur",
+        help="Nom de l'optimiseur pour entraîner le modèle : 'sgd' ou 'adam' (default: adam)",
         default="adam"
     )
     parser.add_argument(
         "--lr",
-        help="Learning rate utilisé par l'optimiseur",
-        default=None,
-        type=float
-    )
-    parser.add_argument(
-        "--test",
-        help="Teste le modèle sur les données de test",
-        action="store_true",
-        default=False
-    )
-    parser.add_argument(
-        "--use",
-        help="Utilise le modèle pour classifier de nouveaux chiffres",
-        action="store_true",
-        default=False
+        help="Learning rate utilisé par l'optimiseur (default: 0.0002)",
+        type=float,
+        default=2e-4
     )
     return parser.parse_args()
