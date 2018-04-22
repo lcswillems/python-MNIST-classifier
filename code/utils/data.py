@@ -1,8 +1,7 @@
 from tensorflow.python.keras.datasets import mnist
 from tensorflow.python.keras.utils import to_categorical
-
-import numpy as np
-import scipy as sc
+import numpy
+import scipy
 
 IMG_SIZE = 28
 IMG_SHAPE = (IMG_SIZE, IMG_SIZE, 1)
@@ -22,7 +21,7 @@ def get_data():
     return (x_train, y_train), (x_test, y_test)
 
 def format_x(x):
-    x = np.array(x)
+    x = numpy.array(x)
     x = x.reshape(x.shape[0], IMG_SIZE, IMG_SIZE, 1)
     x = x.astype("float32")
     x /= 255
@@ -33,19 +32,19 @@ def format_y(y):
     return y
 
 def extract(img):
-    if np.any(img):
+    if numpy.any(img):
         img = img.copy()
 
-        while np.sum(img[0]) == 0:
+        while numpy.sum(img[0]) == 0:
             img = img[1:]
 
-        while np.sum(img[:,0]) == 0:
+        while numpy.sum(img[:,0]) == 0:
             img = img[:,1:]
 
-        while np.sum(img[-1]) == 0:
+        while numpy.sum(img[-1]) == 0:
             img = img[:-1]
 
-        while np.sum(img[:,-1]) == 0:
+        while numpy.sum(img[:,-1]) == 0:
             img = img[:,:-1]
     
     return img
@@ -62,30 +61,30 @@ def shrink_center(img):
         cols = IMG_CENTER_SIZE
         rows = round(rows*factor)
 
-    img = sc.misc.imresize(img, (rows, cols))
+    img = scipy.misc.imresize(img, (rows, cols))
 
     return img
 
 def fit(img):
-    new_img = np.zeros((IMG_SIZE, IMG_SIZE), dtype=img.dtype)
+    new_img = numpy.zeros((IMG_SIZE, IMG_SIZE), dtype=img.dtype)
 
     new_img[:img.shape[0], :img.shape[1]] = img
 
     return new_img
 
 def recenter(img):
-    cy, cx = sc.ndimage.measurements.center_of_mass(img)
+    cy, cx = scipy.ndimage.measurements.center_of_mass(img)
 
     rows, cols = img.shape
-    shiftx = np.round(cols/2-cx).astype(int)
-    shifty = np.round(rows/2-cy).astype(int)
+    shiftx = numpy.round(cols/2-cx).astype(int)
+    shifty = numpy.round(rows/2-cy).astype(int)
 
-    img = sc.ndimage.interpolation.shift(img, (shifty, shiftx))
+    img = scipy.ndimage.interpolation.shift(img, (shifty, shiftx))
 
     return img
 
 def binarize(img):
-    if np.any(img):
+    if numpy.any(img):
         img = img.copy()
 
         for j in range(img.shape[1]):

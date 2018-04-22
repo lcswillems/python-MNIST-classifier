@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from tensorflow.python.keras.optimizers import SGD, Adam
-import numpy as np
+import numpy
 
 import arguments
 import ui
@@ -34,14 +34,14 @@ if args.mode == "train":
 
 elif args.mode == "test":
     (_, _), (x_test, y_test) = utils.get_data()
-    cls_test = np.argmax(y_test, axis=1)
+    cls_test = numpy.argmax(y_test, axis=1)
 
     y_pred = model.predict(x_test, batch_size=128, verbose=1)
-    cls_pred = np.argmax(y_pred, axis=1)
+    cls_pred = numpy.argmax(y_pred, axis=1)
 
     incorrect = (cls_pred != cls_test)
 
-    accuracy = 1 - np.mean(incorrect)
+    accuracy = 1 - numpy.mean(incorrect)
     accuracy = round(accuracy*100, 1)
     print("Accuracy: {}%".format(accuracy))
 

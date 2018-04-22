@@ -2,8 +2,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap, QPainter, QPen, qRed, QColor
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QPushButton, QLabel
-
-import numpy as np
+import numpy
 
 import utils
 
@@ -11,7 +10,7 @@ class ImageLabel(QLabel):
     def image(self):
         qImage = self.pixmap().toImage()
 
-        img = np.zeros((qImage.height(), qImage.width()), dtype="int32")
+        img = numpy.zeros((qImage.height(), qImage.width()), dtype="int32")
         
         for j in range(qImage.height()):
             for i in range(qImage.width()):
@@ -46,7 +45,7 @@ class DigitLabel(ImageLabel):
         self.resetImage()
 
     def resetImage(self):
-        image = np.zeros((self.size, self.size), dtype="int32")
+        image = numpy.zeros((self.size, self.size), dtype="int32")
         self.setImage(image)
 
     def mousePressEvent(self, event):
@@ -81,7 +80,7 @@ def build(model):
         y = model.predict(x)
         
         distr = y[0]
-        claz = np.argmax(distr)
+        claz = numpy.argmax(distr)
 
         for i, (class_label, proba_label) in enumerate(classif_labels):
             if i == claz:
