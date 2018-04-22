@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from tensorflow.python.keras.optimizers import SGD, Adam
 import numpy
 
