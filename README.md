@@ -211,4 +211,4 @@ Pour pratiquer, je vous recommende de faire [les TPs confectionnés par Hvass](h
 
 Voilà ! Vous avez de quoi faire ! Ne croyez pas que vous ne pouvez pas le faire. Je vous jure, vous pouvez ! Avoir les bases du domaine ne va pas être sans difficulté, mais c'est loin d'être infaisable ! Beaucoup de personnes se convertissent rapidement au deep learning. Personnellement, je n'ai commencé à m'intéresser au domaine qu'en Master 1 (tout seul, en suivant le cours de machine learning de l'ENS) parce que je ne l'ai découvert qu'en M1... Si je l'avais découvert au lycée, à coup sûr, je me serai lancé dans cette aventure.
 
-Bon courage ! Battez-vous, ne vous découragez pas, percévérer. Votre travail paiera et vous pourrez rapidement peut-être créer des choses incroyables ! Tenez-moi au courant si vous le pouvez :) .
+Bon courage ! Battez-vous, ne vous découragez pas, percévérez. Votre travail paiera et vous pourrez rapidement peut-être créer des choses incroyables ! Tenez-moi au courant si vous le pouvez :) .
