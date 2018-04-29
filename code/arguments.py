@@ -28,7 +28,7 @@ def get_args():
     )
     parser.add_argument(
         "--lr",
-        help="Taux d'apprentissage utilisé par l'optimiseur (default: 0.0002)",
+        help="Learning rate utilisé par l'optimiseur (default: 0.0002)",
         type=float,
         default=2e-4
     )
