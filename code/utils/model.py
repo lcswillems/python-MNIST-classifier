@@ -1,12 +1,15 @@
+import os
 from tensorflow.python import keras
 
 import models
 
 def load_model(name):
     try:
-        return keras.models.load_model("storage/" + name + ".h5")
+        path = os.path.join("storage", name + ".h5")
+        return keras.models.load_model(path)
     except OSError:
         return getattr(models, name)()
 
 def save_model(model, name):
-    keras.models.save_model(model, "storage/" + name + ".h5")
+    path = os.path.join("storage", name + ".h5")
+    keras.models.save_model(model, path)
