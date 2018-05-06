@@ -2,7 +2,7 @@
 
 <p align="center"><img src="README-images/demo-ui.gif"></p>
 
-Ce dépôt contient un classifieur de chiffres manuscrits écrit en Python. Il a été réalisé par [Lucas Willems](http://www.lucaswillems.com) pour sa présentation "[Le deep learning pour lire des chiffres](http://seminairespourtous.ens.fr)" au séminaire [Info Pour Tous 2018](http://seminairespourtous.ens.fr).
+Ce dépôt contient un classifieur de chiffres manuscrits écrit en Python. Il a été réalisé par [Lucas Willems](http://www.lucaswillems.com) pour sa présentation "[Le deep learning pour lire les codes postaux](http://seminairespourtous.ens.fr)" au séminaire [Info Pour Tous 2018](http://seminairespourtous.ens.fr).
 
 Si jamais vous rencontrez un quelconque problème, vous pouvez ouvrir une nouvelle issue sur [cette page](https://github.com/lcswillems/python-MNIST-classifier/issues) en cliquant sur "New issue".
 
@@ -92,7 +92,7 @@ Par exemple, si vous souhaitez entraîner le modèle `densenet`, vous pouvez ex�
 
 S'affiche d'abord un descriptif de votre modèle : les différents layers ("couches" en français) et le nombre de paramètres du modèle. Puis s'affiche ensuite :
 - l'epoch (le numéro de l'entraînement sur toutes les données d'entraînement),
-- la loss (le coût des erreurs) et l'accuracy (le taux de bonnes prédictions) mises à jour en temps réel.
+- la loss (la perte ou coût des erreurs) et l'accuracy (le taux de bonnes prédictions) mises à jour en temps réel.
 
 Lors de la première exécution de cette commande, le programme commence par initialiser le modèle avec des paramètres aléatoires. Le modèle est alors au niveau 0 de l'apprentissage. Puis, comme par défaut `epoch = 1`, le programme entraîne le modèle sur toutes les données d'entraînement une fois. La loss décroît et l'accuracy augmente normalement, le modèle est en train d'apprendre.
 
@@ -104,13 +104,13 @@ A chaque exécution de la commande, la loss devrait normalement diminuer et l'ac
 
 Vous pouvez aussi modifier la valeur des autres arguments optionnels pour influencer la vitesse d'apprentissage du modèle. Les valeurs par défaut ne sont pas les "meilleures" valeurs et les "meilleures" valeurs dépendent du modèle que vous entraîner. Sur le modèle `densenet`, vous pouvez essayer de voir l'impact :
 - du learning rate en rajoutant `--lr X` où X est un petit nombre (entre 0.1 et 0.00001 typiquement). Sa valeur par défaut est 0.0001. Plus le learning rate est grand, plus les paramètres varient à chacune de leurs modifications. Si vous prenez 0.001 pour `X`, vous pouvez remarquer que votre modèle apprend plus rapidement ! Si vous prenez 0.01 pour `X`, il apprend encore plus rapidement au début, mais l'apprentissage devient vite chaotique : la loss augmente, diminue, augmente (elle oscille) et n'arrive pas à descendre en dessous de 0.03. Enfin, si vous prenez 0.1 pour `X`, l'apprentissage est chaotique dès le début. La meilleure stratégie pour entraîner le modèle le plus rapidement consiste à l'entraîner pendant environ 5 epochs avec un learning rate 0.01, puis ensuite de mettre le learning rate à 0.001 voire 0.0001.
-- de l'optimiseur en rajoutant `--optimizer X` où X peut être `sgd` ou `adam`. `sgd` est l'algorithme de descente de gradient stochastique, qui modifie les paramètres du modèle de manière à faire diminuer la loss. `adam` est une version améliorée de `sgd`. `adam` est l'algorithme utilisé par défaut : il performe bien mieux que `sgd`. Vous pouvez essayer en rajoutant `--optimizer sgd`.
+- de l'optimiseur en rajoutant `--optimizer X` où X peut être `sgd` ou `adam`. `sgd` est l'algorithme de la descente la plus profonde ou descente de gradient. Il modifie les paramètres du modèle de manière à faire diminuer la loss. `adam` est une version améliorée de `sgd`. `adam` est l'algorithme utilisé par défaut : il performe bien mieux que `sgd`. Vous pouvez essayer en rajoutant `--optimizer sgd`.
 
 Maintenant que vous avez bien entraîné le modèle `densenet`, vous pouvez tester son niveau d'apprentissage en suivant les instructions de [la sous-partie suivante](#test-du-modele) ou alors entraîner un autre modèle.
 
 2 autres modèles sont disponibles de base :
 - `linear` : c'est une version simple de `densenet` mais moins performante. Vous pouvez arriver à une loss de 0.25 et une accuracy de 0.93 après 50 epochs.
-- `convnet` : c'est une version plus sophistiquée de `densenet` mais plus performante, qui utilise une certaine opération mathématique appelée **convolution** (vous pouvez lire [cet excellent tutoriel pour débutant](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) pour comprendre). Vous pouvez arriver à une loss de 0.03 et une accuracy de 0.99 en 10 epochs.
+- `convnet` : c'est une version plus sophistiquée de `densenet` mais plus performante, qui utilise une certaine opération mathématique appelée **convolution** (vous pouvez lire [cet excellent tutoriel pour débutant](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) pour comprendre et [ce site internet](http://scs.ryerson.ca/~aharley/vis/conv/) pour visualiser). Vous pouvez arriver à une loss de 0.03 et une accuracy de 0.99 en 10 epochs.
 
 Notez que l'entraînement de `convnet` est beaucoup plus lent !! Commencer avec un grand learning rate (0.01) puis le diminuer progressivement pour arriver à 0.0001 pourra vous économiser beaucoup de temps.
 
@@ -131,7 +131,7 @@ Normalement, vous devez obtenir les accuracy suivantes à quelques choses près 
 
 Nous pouvons faire deux remarques importantes :
 1. Sur les données d'entraînement, `densenet` a une accuracy similaire voire meilleure que `convnet` alors qu'elle a une accuracy nettement inférieure sur les données de test.
-2. Les trois modèles ont des accuracies supérieures sur les données d'entraînement que sur les données de test. On dit qu'elles **sur-interprêtent**. Ce phénomène se passe aussi lorsque les humains apprennent : ils sont meilleurs sur des problèmes qu'ils ont déjà vus.
+2. Les trois modèles ont des accuracies supérieures sur les données d'entraînement que sur les données de test. On dit qu'elles **sur-interprètent**. Ce phénomène se passe aussi lorsque les humains apprennent : ils sont meilleurs sur des problèmes qu'ils ont déjà vus.
 
 ### Utilisation du modèle
 
@@ -174,13 +174,13 @@ Essayez de créer un maximum de modèles, de les entraîner et de voir leur accu
 
 ## Pour aller plus loin
 
-Vous avez fait un bel effort et avez sûrement beaucoup progressé ! Continuez vos efforts, vous pouvez aller plus loin, et réaliser des choses remarquables. Le deep learning est en plein essort et permet d'accomplir des tâches incroyables.
+Vous avez fait un bel effort et avez sûrement beaucoup progressé ! Avant de continuer, [voici une ressource](https://playground.tensorflow.org/) que vous pouvez tester pour vous familiariser plus avec les réseaux de neurones. Vous pouvez vous amuser à replacer la fonction ReLU par d'autres fonctions, à changer le learning rate, le nombre de layers, les données, etc...
 
-J'ai récemment découvert le **transfert de style**. Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) : 
+Maintenant, continuez vos efforts, vous pouvez aller plus loin encore et réaliser des choses remarquables. Le deep learning est en plein essort et permet d'accomplir des tâches incroyables. J'ai récemment découvert le **transfert de style**. Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) : 
 
 <p align="center"><img src="README-images/style-transfer.png"></p>
 
-Le modèle transforme une photo du campus de Stanford et un tableau "[La nuit étoilée](https://fr.wikipedia.org/wiki/La_Nuit_%C3%A9toil%C3%A9e)" de Van Gogh en une tableau du campus de Stanford peint avec le style de Van Gogh !
+Le modèle transforme une photo du campus de Stanford et un tableau "[La nuit étoilée](https://fr.wikipedia.org/wiki/La_Nuit_%C3%A9toil%C3%A9e)" de Van Gogh en un tableau du campus de Stanford peint avec le style de Van Gogh !
 
 Vous pouvez aussi coloriser des images. Voici un exemple (et plein d'autres [ici](https://github.com/satoshiiizuka/siggraph2016_colorization)) :
 
