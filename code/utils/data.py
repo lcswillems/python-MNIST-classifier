@@ -101,6 +101,5 @@ def preprocess(img):
     img2 = shrink_center(img1)
     img3 = fit(img2)
     img4 = recenter(img3)
-    img5 = binarize(img4)
             
-    return img2, img3, img4, img5
+    return img2, img3, img4
