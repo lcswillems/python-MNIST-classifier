@@ -148,7 +148,6 @@ Vous pouvez remarquer 4 petits carrés noirs à droite du gros carré noir dans 
 1. Dans le 1er petit carré, la partie noire tout autour du chiffre dessiné a été supprimée puis le chiffre a été redimensionné en conservant les proportions pour qu'il fasse moins 20 pixels de large et 20 pixels de hauteur.
 2. Dans le 2e petit carré, des pixels noirs ont été ajoutés en bas et à droite pour que le chiffre fasse exactement 20 pixels de large et 20 pixels de hauteur.
 3. Dans le 3e petit carré, le chiffre a été recentré en fonction de son [barycentre](https://fr.wikipedia.org/wiki/Barycentre).
-4. Dans le 4e petit carré, le contraste a été augmenté pour supprimer quasiment toutes les nuances de gris et se retrouver avec une image en noir et blanc.
 
 La question que l'on peut se poser est : pourquoi appliquer de telles transformations avant de donner l'image au modèle ? Tout simplement parce que le modèle n'a pas été entraîné et testé sur n'importe quels chiffres manuscrits. Les données d'entraînement et de test étaient normalisées : les chiffres faisaient maximum 20 pixels de large et de hauteur et étaient centrés selon leur barycentre. Pour que le modèle puisse être performant sur les chiffres dessinés par les utilisateurs, il faut aussi appliquer cette normalisation.
 
