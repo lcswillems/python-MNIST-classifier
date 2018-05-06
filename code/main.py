@@ -18,7 +18,7 @@ if args.mode == "train":
     else:
         raise ValueError("Nom d'optimiseur inconnu")
 
-    (x_train, y_train), (_, _) = utils.get_data()
+    (x_train, y_train), (_, _) = utils.get_data(num_train_examples=args.examples)
 
     model.compile(loss="categorical_crossentropy",
                   optimizer=optimizer,

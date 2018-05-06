@@ -9,8 +9,11 @@ IMG_CENTER_SIZE = 20
 NUM_CLASSES = 10
 NUM_PROCESS_STEPS = 4
 
-def get_data():
+def get_data(num_train_examples=None):
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    if num_train_examples != None:
+        x_train = x_train[:num_train_examples]
+        y_train = y_train[:num_train_examples]
 
     x_train = format_x(x_train)
     x_test = format_x(x_test)

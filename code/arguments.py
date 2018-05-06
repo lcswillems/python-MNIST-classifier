@@ -32,4 +32,10 @@ def get_args():
         type=float,
         default=2e-4
     )
+    parser.add_argument(
+        "--examples",
+        help="Nombre de données d'entraînement (default: toutes i.e. 60000)",
+        type=int,
+        default=None
+    )
     return parser.parse_args()
