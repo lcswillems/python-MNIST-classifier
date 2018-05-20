@@ -10,7 +10,7 @@ Sommaire :
 
 - [Installation](#installation)
     - [1. Python 3](#1-python-3)
-    - [2. Paquets Python](#2-paquets-python)
+    - [2. Bibliothèques Python](#2-bibliothèques-python)
     - [3. Code du classifieur](#3-code-du-classifieur)
 - [Utilisation](#utilisation)
     - [Entraînement du modèle](#entraînement-du-modèle)
@@ -26,26 +26,30 @@ Avant de pouvoir utiliser le classifieur, vous devez installer les programmes re
 
 ### 1. Python 3
 
-La première étape de la procédure consiste à télécharger puis installer [Python 3](https://www.python.org/downloads/), le langage de programmation dans lequel le classifieur est écrit. Si jamais vous avez besoin de plus de détails, vous pouvez regarder [cette vidéo Youtube](https://www.youtube.com/watch?v=wp15jyylSEQ).
+La première étape de la procédure consiste à installer Python 3, le langage de programmation dans lequel est écrit le classifieur. Voici, pour chaque système d'exploitation, la manière la plus simple de faire :
+- pour Windows et Mac, [télécharger Python 3](https://www.python.org/downloads/) puis l'installer. Si jamais vous avez besoin de plus de détails, vous pouvez regarder [cette vidéo Youtube](https://www.youtube.com/watch?v=wp15jyylSEQ).
+- pour Linux, ouvrir un terminal puis exécuter `sudo apt update` puis `sudo apt python3`.
 
-### 2. Paquets Python
+### 2. Bibliothèques Python
 
-La version de base de Python 3 que vous venez d'installer possède beaucoup de fonctionnalités mais ne peut évidemment pas posséder toutes les fonctionnalités imaginables. Or, pour réaliser le classifieur, j'ai utilisé des fonctionnalités supplémentaires qui ne se trouvent pas dans la version de base. Ces fonctionnalités supplémentaires sont regroupées en ce que l'on appelle des paquets ("packages" en anglais).
+La version de base de Python 3 que vous venez d'installer possède beaucoup de fonctionnalités mais ne peut évidemment pas posséder toutes les fonctionnalités imaginables. Or, pour réaliser le classifieur, j'ai utilisé des fonctionnalités supplémentaires qui ne se trouvent pas dans la version de base. Ces fonctionnalités supplémentaires sont regroupées en ce que l'on appelle des bibliothèques ("libraries" en anglais).
 
-6 paquets ont été utilisés pour réaliser le classifieur :
+6 bibliothèques ont été utilisées pour réaliser le classifieur :
 
-- `numpy` et `scipy` : deux paquets pour faire des calculs scientifiques. Plus précisément, ces paquets offrent des fonctionnalités pour manipuler les matrices, pour faire des statistiques, du traitement du signal...
-- `tensorflow`: un paquet pour faire du machine learning. Il permet d'entraîner, tester et utiliser le classifieur.
-- `PyQt5`: un paquet pour avoir une interface graphique. Il permet de dessiner des chiffres dans le mode `use` (voir section "Utilisation" plus bas).
-- `matplotlib`: un paquet pour afficher des graphiques, des images... Il permet d'afficher les erreurs du classifieur dans le mode `test` (voir section "Utilisation" plus bas).
-- `h5py`: un paquet pour manipuler des données. Il permet de charger et de sauvegarder le classifieur sur votre ordinateur.
+- `tensorflow`: une bibliothèque pour faire du machine learning. Elle permet d'entraîner, tester et utiliser le classifieur.
+- `PyQt5`: une bibliothèque pour avoir une interface graphique. Elle permet de dessiner des chiffres dans le mode `use` (voir section "Utilisation du modèle" plus bas).
+- `matplotlib`: une bibliothèque pour afficher des graphiques, des images... Elle permet d'afficher les erreurs du classifieur dans le mode `test` (voir section "Test du modèle" plus bas).
+- `h5py`: une bibliothèque pour manipuler des données. Elle permet de charger et de sauvegarder le classifieur sur votre ordinateur.
+- `numpy`: une bibliothèque pour manipuler des tableaux à n dimensions. Elle permet de manipuler facilement les images par exemple.
+- `scipy`: une bibliothèque pour faire des calculs scientifiques (statistiques, traitement du signal...). Elle permet d'appliquer certaines transformations sur une image dans le mode `use` (voir section "Utilisation du modèle" plus bas).
+- `scikit-image`: une bibliothèque pour transformer les images Elle permet d'appliquer certaines transformations sur une image dans le mode `use` (voir section "Utilisation du modèle" plus bas).
 
-Actuellement, ces paquets ne se trouvent pas sur votre ordinateur. La deuxième étape de la procédure consiste donc à les télécharger puis les installer. Heureusement, Python inclut déjà un outil, appelé `pip`, permettant de le faire très facilement.
+Actuellement, ces bibliothèques ne se trouvent pas sur votre ordinateur. La deuxième étape de la procédure consiste donc à les télécharger puis les installer. Heureusement, Python inclut déjà un outil, appelé `pip`, permettant de le faire très facilement.
 
 Si vous êtes sous Windows, ouvrez l'invité de commande (tapez "Invité de commande" ou "cmd" dans le menu Démarrer et cliquez sur le programme). Si vous êtes sur Linux ou Mac OS, ouvrez le terminal. Ensuite, dans tous les cas, exécutez la commande suivante :
 
 ```
-pip3 install numpy scipy tensorflow pyqt5 matplotlib h5py
+pip3 install tensorflow pyqt5 matplotlib h5py numpy scipy scikit-image
 ```
 
 ### 3. Code du classifieur
@@ -142,14 +146,16 @@ Pour ce faire, il vous faut utiliser le mode `use` en exécutant, par exemple, l
 
 ```python3 main.py --mode use --model convnet```
 
-Vous pouvez dessiner votre chiffre dans le gros cadre noir. A chaque fois que vous relachez votre clic, le modèle classifie le chiffre dessiné.
+Vous pouvez dessiner votre chiffre dans le gros cadre noir. A chaque fois que vous relâchez votre clic, le modèle classifie le chiffre dessiné.
 
-Vous pouvez remarquer 4 petits carrés noirs à droite du gros carré noir dans lequel le chiffre dessiné apparaît légèrement modifié. Voici plus précisément qu'elles sont les transformations :
+Vous pouvez remarquer 4 petits carrés noirs à droite du gros carré noir dans lesquels le chiffre dessiné apparaît légèrement modifié. Voici plus précisément quelles sont les transformations :
 1. Dans le 1er petit carré, la partie noire tout autour du chiffre dessiné a été supprimée puis le chiffre a été redimensionné en conservant les proportions pour qu'il fasse moins 20 pixels de large et 20 pixels de hauteur.
 2. Dans le 2e petit carré, des pixels noirs ont été ajoutés en bas et à droite pour que le chiffre fasse exactement 20 pixels de large et 20 pixels de hauteur.
 3. Dans le 3e petit carré, le chiffre a été recentré en fonction de son [barycentre](https://fr.wikipedia.org/wiki/Barycentre).
 
 La question que l'on peut se poser est : pourquoi appliquer de telles transformations avant de donner l'image au modèle ? Tout simplement parce que le modèle n'a pas été entraîné et testé sur n'importe quels chiffres manuscrits. Les données d'entraînement et de test étaient normalisées : les chiffres faisaient maximum 20 pixels de large et de hauteur et étaient centrés selon leur barycentre. Pour que le modèle puisse être performant sur les chiffres dessinés par les utilisateurs, il faut aussi appliquer cette normalisation.
+
+Enfin, puisque nous venons de parler des transformations appliquées au chiffre dessiné dans le mode `use`, il est temps de vous parler de la transformation magique qui est systématiquement appliquée à une image de chiffre, que ce soit lors de l'entraînement, lors du test ou lors de l'utilisation. Cette transformation est la toute première appliquée et est appelée la **normalisation**. Une image étant un tableau de nombres entre 0 et 255, la normalisation consiste à diviser tous les nombres par 255 pour se retrouver avec un tableau de nombres entre 0 et 1. Normaliser l'image accélère l'apprentissage, mais je ne peux vous expliquer correctement la raison ici malheureusement. Cette transformation va encore rester quelques temps magique pour vous.
 
 ## Structure du code
 
@@ -191,8 +197,11 @@ Certaines autres applications incroyables de ce domaine sont répertoriées dans
 Toutefois, pour être capable de reproduire ces résultats voire créer vos propres résultats (peut-être aurez-vous une idée incroyable aussi), il vous faut continuer à étudier.
 
 Je pense qu'il vous faut :
-- améliorer votre compréhension de la théorie,
+- maîtriser Python,
+- maîtriser la théorie du deep learning,
 - beaucoup pratiquer.
+
+Pour maîtriser Python, vous pouvez suivre le cours "[Apprendre à programmer en Python](https://openclassrooms.com/courses/apprenez-a-programmer-en-python)" de OpenClassrooms (sous format texte, vidéo, livre) qui vous donnera une compréhension complète du langage. Pour rentrer plus rapidement dans le langage mais moins en profondeur, vous pouvez regarder ma série de vidéos pour "[Apprendre Python](https://www.youtube.com/watch?v=A5dl7XRnmM4&list=PL5TvtEevd4IbBjsZe94pdU8r98DVr71rm)".
 
 Pour maîtriser la théorie, je vous recommande très fortement de suivre la spécialisation "[Deep Learning](https://www.coursera.org/specializations/deep-learning)" (vous pouvez la suivre même en étant au lycée !). Le problème est que lorsqu'on accède à la page, suivre les cours semblent payant... Après des recherches sur internet, j'ai trouvé les pages spécifiques aux 5 cours :
 - Cours 1 : "[Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning/home/welcome)"

@@ -2,6 +2,7 @@ from tensorflow.python.keras.datasets import mnist
 from tensorflow.python.keras.utils import to_categorical
 import numpy
 import scipy
+import skimage
 
 IMG_SIZE = 28
 IMG_SHAPE = (IMG_SIZE, IMG_SIZE, 1)
@@ -64,7 +65,7 @@ def shrink_center(img):
         cols = IMG_CENTER_SIZE
         rows = round(rows*factor)
 
-    img = scipy.misc.imresize(img, (rows, cols))
+    img = skimage.transform.resize(img, (rows, cols))
 
     return img
 
