@@ -28,7 +28,7 @@ Avant de pouvoir utiliser le classifieur, vous devez installer les programmes re
 
 La première étape de la procédure consiste à installer Python 3, le langage de programmation dans lequel est écrit le classifieur. Voici, pour chaque système d'exploitation, la manière la plus simple de faire :
 - pour Windows et Mac, [télécharger Python 3](https://www.python.org/downloads/) puis l'installer. Si jamais vous avez besoin de plus de détails, vous pouvez regarder [cette vidéo Youtube](https://www.youtube.com/watch?v=wp15jyylSEQ).
-- pour Linux, ouvrir un terminal puis exécuter `sudo apt update` puis `sudo apt python3`.
+- pour Linux, ouvrir un terminal puis exécuter `sudo apt update` puis `sudo apt install python3`.
 
 ### 2. Bibliothèques Python
 
@@ -182,7 +182,7 @@ Essayez de créer un maximum de modèles, de les entraîner et de voir leur accu
 
 Vous avez fait un bel effort et avez sûrement beaucoup progressé ! Avant de continuer, [voici une ressource](https://playground.tensorflow.org/) que vous pouvez tester pour vous familiariser plus avec les réseaux de neurones. Vous pouvez vous amuser à replacer la fonction ReLU par d'autres fonctions, à changer le learning rate, le nombre de layers, les données, etc...
 
-Maintenant, continuez vos efforts, vous pouvez aller plus loin encore et réaliser des choses remarquables. Le deep learning est en plein essort et permet d'accomplir des tâches incroyables. J'ai récemment découvert le **transfert de style**. Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) : 
+Maintenant, continuez vos efforts, vous pouvez aller plus loin encore et réaliser des choses remarquables. Le deep learning est en plein essort et permet d'accomplir des tâches incroyables. J'ai récemment découvert le **transfert de style**. Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) :
 
 <p align="center"><img src="README-images/style-transfer.png"></p>
 
