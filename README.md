@@ -2,7 +2,7 @@
 
 <p align="center"><img src="README-images/demo-ui.gif"></p>
 
-Ce dépôt contient un classifieur de chiffres manuscrits écrit en Python. Il a été réalisé par [Lucas Willems](http://www.lucaswillems.com) pour sa présentation "[Le deep learning pour lire les codes postaux](http://seminairespourtous.ens.fr)" au séminaire [Info Pour Tous 2018](http://seminairespourtous.ens.fr).
+Ce dépôt contient un classifieur de chiffres manuscrits écrit en Python. Il a été réalisé par [Lucas Willems](http://www.lucaswillems.com) pour sa présentation "[Le deep learning pour lire les codes postaux](http://seminairespourtous.ens.fr/ipt/1819/exposes/24/le-deep-learning-pour-remplacer-les-postiers)" au séminaire [Info Pour Tous 2018](http://seminairespourtous.ens.fr).
 
 Si jamais vous rencontrez un quelconque problème, vous pouvez ouvrir une nouvelle issue sur [cette page](https://github.com/lcswillems/python-MNIST-classifier/issues) en cliquant sur "New issue".
 
