@@ -3,7 +3,7 @@ from tensorflow.python.keras.layers import Dense, Activation, Flatten, Conv2D, M
 
 import utils
 
-def linear():
+def densenet1():
     model = Sequential()
 
     model.add(Flatten(input_shape=utils.IMG_SHAPE))
@@ -13,9 +13,9 @@ def linear():
 
     return model
 
-def densenet():
+def densenet2():
     model = Sequential()
-    
+
     model.add(Flatten(input_shape=utils.IMG_SHAPE))
 
     model.add(Dense(128))
@@ -35,7 +35,7 @@ def convnet():
 
     model.add(Conv2D(64, kernel_size=(3, 3)))
     model.add(Activation("relu"))
-    
+
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Flatten())

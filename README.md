@@ -76,11 +76,11 @@ Vous devez obtenir l'erreur suivante : `main.py: error: the following arguments 
 
 Dans notre cas, plusieurs arguments sont optionnels, mais 2 arguments sont requis :
 - `mode` : le mode d'utilisation. Il doit valloir soit `train`, soit `test`, soit `use`. L'utilité de ces modes est expliqué dans les sous-parties suivantes.
-- `model` : le nom du modèle du classifieur. 3 modèles sont disponibles de base : `linear`, `densenet` et `convnet`. Pour ajouter vos propres modèles, lisez [cette sous-partie](#création-dun-modèle).
+- `model` : le nom du modèle du classifieur. 3 modèles sont disponibles de base : `densenet1`, `densenet2` et `convnet`. Pour ajouter vos propres modèles, lisez [cette sous-partie](#création-dun-modèle).
 
 Voici un exemple de commande :
 
-```python3 main.py --mode train --model densenet```
+```python3 main.py --mode train --model densenet1```
 
 Pour obtenir la liste de tous les arguments (requis et optionnels) ainsi que leur description, vous pouvez exécuter :
 
@@ -88,11 +88,11 @@ Pour obtenir la liste de tous les arguments (requis et optionnels) ainsi que leu
 
 ### Entraînement du modèle
 
-Le premier mode d'utilisation est `train`. Il vous permet d'entraîner votre modèle. De base, 3 modèles sont disponibles : `linear`, `densenet` et `convnet`.
+Le premier mode d'utilisation est `train`. Il vous permet d'entraîner votre modèle. De base, 3 modèles sont disponibles : `densenet1`, `densenet2` et `convnet`.
 
-Par exemple, si vous souhaitez entraîner le modèle `densenet`, vous pouvez exécuter :
+Par exemple, si vous souhaitez entraîner le modèle `densenet2`, vous pouvez exécuter :
 
-```python3 main.py --mode train --model densenet```
+```python3 main.py --mode train --model densenet2```
 
 S'affiche d'abord un descriptif de votre modèle : les différents layers ("couches" en français) et le nombre de paramètres du modèle. Puis s'affiche ensuite :
 - l'epoch (le numéro de l'entraînement sur toutes les données d'entraînement),
@@ -104,18 +104,18 @@ Juste avant de finir de s'exécuter, le programme sauvegarde les paramètres du 
 
 Pour qu'il continue à apprendre, vous pouvez réexécuter la commande plusieurs fois si vous le voulez ou bien changer la valeur de l'argument `epochs`. Par exemple, si vous rajoutez `--epochs 5` à la commande précédente, le modèle sera entraîné 5 fois sur les données d'entraînement.
 
-A chaque exécution de la commande, la loss devrait normalement diminuer et l'accuracy augmenter. Cela signifie que le modèle fait de moins en moins d'erreurs sur les données d'**entraînement**. Au bout d'un certain temps, la loss et l'accuracy vont finir par stagner. Cela signifie que le modèle a atteint ses performances maximales sur les données d'entraînement. Avec les valeurs par défaut des arguments, le modèle `densenet` peut facilement atteindre une loss de 0.015 et une accuracy de 0.995 après 50 epochs.
+A chaque exécution de la commande, la loss devrait normalement diminuer et l'accuracy augmenter. Cela signifie que le modèle fait de moins en moins d'erreurs sur les données d'**entraînement**. Au bout d'un certain temps, la loss et l'accuracy vont finir par stagner. Cela signifie que le modèle a atteint ses performances maximales sur les données d'entraînement. Avec les valeurs par défaut des arguments, le modèle `densenet2` peut facilement atteindre une loss de 0.015 et une accuracy de 0.995 après 50 epochs.
 
-Vous pouvez aussi modifier la valeur des autres arguments optionnels pour influencer la vitesse d'apprentissage du modèle. Les valeurs par défaut ne sont pas les "meilleures" valeurs et les "meilleures" valeurs dépendent du modèle que vous entraîner. Sur le modèle `densenet`, vous pouvez essayer de voir l'impact :
+Vous pouvez aussi modifier la valeur des autres arguments optionnels pour influencer la vitesse d'apprentissage du modèle. Les valeurs par défaut ne sont pas les "meilleures" valeurs et les "meilleures" valeurs dépendent du modèle que vous entraîner. Sur le modèle `densenet2`, vous pouvez essayer de voir l'impact :
 - du learning rate en rajoutant `--lr X` où X est un petit nombre (entre 0.1 et 0.00001 typiquement). Sa valeur par défaut est 0.0001. Plus le learning rate est grand, plus les paramètres varient à chacune de leurs modifications. Si vous prenez 0.001 pour `X`, vous pouvez remarquer que votre modèle apprend plus rapidement ! Si vous prenez 0.01 pour `X`, il apprend encore plus rapidement au début, mais l'apprentissage devient vite chaotique : la loss augmente, diminue, augmente (elle oscille) et n'arrive pas à descendre en dessous de 0.03. Enfin, si vous prenez 0.1 pour `X`, l'apprentissage est chaotique dès le début. La meilleure stratégie pour entraîner le modèle le plus rapidement consiste à l'entraîner pendant environ 5 epochs avec un learning rate 0.01, puis ensuite de mettre le learning rate à 0.001 voire 0.0001.
 - de l'optimiseur en rajoutant `--optimizer X` où X peut être `sgd` ou `adam`. `sgd` est l'algorithme de la descente la plus profonde ou descente de gradient. Il modifie les paramètres du modèle de manière à faire diminuer la loss. `adam` est une version améliorée de `sgd`. `adam` est l'algorithme utilisé par défaut : il performe bien mieux que `sgd`. Vous pouvez essayer en rajoutant `--optimizer sgd`.
 - du nombre de données d'entraînement en rajoutant `--examples X` où X est le nombre d'exemples d'entraînement pouvant aller de 0 à 60000 (c'est-à-dire tous les exemples d'entraînement).
 
-Maintenant que vous avez bien entraîné le modèle `densenet`, vous pouvez tester son niveau d'apprentissage en suivant les instructions de [la sous-partie suivante](#test-du-modele) ou alors entraîner un autre modèle.
+Maintenant que vous avez bien entraîné le modèle `densenet2`, vous pouvez tester son niveau d'apprentissage en suivant les instructions de [la sous-partie suivante](#test-du-modele) ou alors entraîner un autre modèle.
 
 2 autres modèles sont disponibles de base :
-- `linear` : c'est une version simple de `densenet` mais moins performante. Vous pouvez arriver à une loss de 0.25 et une accuracy de 0.93 après 50 epochs.
-- `convnet` : c'est une version plus sophistiquée de `densenet` mais plus performante, qui utilise une certaine opération mathématique appelée **convolution** (vous pouvez lire [cet excellent tutoriel pour débutant](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) pour comprendre et [ce site internet](http://scs.ryerson.ca/~aharley/vis/conv/) pour visualiser). Vous pouvez arriver à une loss de 0.03 et une accuracy de 0.99 en 10 epochs.
+- `densenet1` contient 1 layer dense contrairement à `densenet2` qui en contient 2. Il est moins performant que ce dernier. Vous pouvez arriver à une loss de 0.25 et une accuracy de 0.93 après 50 epochs.
+- `convnet` est plus performant que `densenet2`. Il utilise une certaine opération mathématique appelée **convolution** (vous pouvez lire [cet excellent tutoriel pour débutant](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) pour comprendre et [ce site internet](http://scs.ryerson.ca/~aharley/vis/conv/) pour visualiser). Vous pouvez arriver à une loss de 0.03 et une accuracy de 0.99 en 10 epochs.
 
 Notez que l'entraînement de `convnet` est beaucoup plus lent !! Commencer avec un grand learning rate (0.01) puis le diminuer progressivement pour arriver à 0.0001 pourra vous économiser beaucoup de temps.
 
@@ -125,17 +125,17 @@ Une fois que vous avez entraîné votre modèle, il est temps de le tester, de v
 
 Pour ce faire, il vous faut utiliser le mode `test` en exécutant, par exemple, la commande suivante :
 
-```python3 main.py --mode test --model densenet```
+```python3 main.py --mode test --model densenet2```
 
 L'accuracy sur les données de test s'affiche ainsi que 16 erreurs commises par votre modèle. Vous pouvez tester les 2 autres modèles.
 
 Normalement, vous devez obtenir les accuracy suivantes à quelques choses près :
-- 92.6% pour `linear`
-- 97.8% pour `densenet`
+- 92.6% pour `densenet1`
+- 97.8% pour `densenet2`
 - 98.8% pour `convnet`
 
 Nous pouvons faire deux remarques importantes :
-1. Sur les données d'entraînement, `densenet` a une accuracy similaire voire meilleure que `convnet` alors qu'elle a une accuracy nettement inférieure sur les données de test.
+1. Sur les données d'entraînement, `densenet2` a une accuracy similaire voire meilleure que `convnet` alors qu'elle a une accuracy nettement inférieure sur les données de test.
 2. Les trois modèles ont des accuracies supérieures sur les données d'entraînement que sur les données de test. On dit qu'elles **sur-interprètent**. Ce phénomène se passe aussi lorsque les humains apprennent : ils sont meilleurs sur des problèmes qu'ils ont déjà vus.
 
 ### Utilisation du modèle
@@ -162,7 +162,7 @@ Enfin, puisque nous venons de parler des transformations appliquées au chiffre 
 Le dossier `code` contient :
 - `main.py` : fichier principal
 - `arguments.py` : fichier où sont définis les arguments de `main.py`
-- `models.py` : fichier où sont définis les modèles `linear`, `densenet`, `convnet`
+- `models.py` : fichier où sont définis les modèles `densenet1`, `densenet2`, `convnet`
 - `ui.py` : fichier où est définie l'interface graphique pour le mode `use`
 - `utils` : un dossier contenant les fichiers :
     - `data.py` permettant de charger les données et de faire les 4 transformations requises dans le mode `use`
@@ -173,8 +173,8 @@ Le dossier `code` contient :
 ### Création d'un modèle
 
 Si vous voulez créer votre propre modèle `X`, vous devez créer une fonction `X` dans le fichier `models.py`. Voici des idées de modèle que vous pourriez créer :
-- Vous pouvez enlever / ajouter des layers au modèle `densenet` et diminuer / agrandir la taille des layers.
-- Vous pouvez enlever / ajouter plus de layers de convolution au modèle `densenet`, enlever les max-pooling, changer la taille des kernels, etc...
+- Vous pouvez enlever / ajouter des layers au modèle `densenet2` et diminuer / agrandir la taille des layers.
+- Vous pouvez enlever / ajouter plus de layers de convolution au modèle `densenet2`, enlever les max-pooling, changer la taille des kernels, etc...
 
 Essayez de créer un maximum de modèles, de les entraîner et de voir leur accuracy pour trouver le modèle qui obtient la plus haute accuracy.
 
