@@ -1,4 +1,4 @@
-from tensorflow.python.keras.optimizers import SGD, Adam
+from tensorflow.keras.optimizers import SGD, Adam
 import numpy
 
 import arguments

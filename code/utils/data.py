@@ -1,5 +1,5 @@
-from tensorflow.python.keras.datasets import mnist
-from tensorflow.python.keras.utils import to_categorical
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
 import numpy
 import scipy
 import skimage
@@ -65,7 +65,9 @@ def shrink_center(img):
         cols = IMG_CENTER_SIZE
         rows = round(rows*factor)
 
-    img = skimage.transform.resize(img, (rows, cols))
+    img = img.astype(float) / 255
+    img = skimage.transform.resize(img, (rows, cols), anti_aliasing=True, mode='constant')
+    img = (img * 255).astype(int)
 
     return img
 
@@ -84,19 +86,6 @@ def recenter(img):
     shifty = numpy.round(rows/2-cy).astype(int)
 
     img = scipy.ndimage.interpolation.shift(img, (shifty, shiftx))
-
-    return img
-
-def binarize(img):
-    if numpy.any(img):
-        img = img.copy()
-
-        for j in range(img.shape[1]):
-            for i in range(img.shape[0]):
-                if img[i][j] >= 50:
-                    img[i][j] = 255
-                else:
-                    img[i][j] = 0
 
     return img
 

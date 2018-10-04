@@ -1,7 +1,8 @@
 import os
-from tensorflow.python import keras
+from tensorflow import keras
 
 import models
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def get_model_path(out):
     return os.path.join("storage", out + ".h5")
