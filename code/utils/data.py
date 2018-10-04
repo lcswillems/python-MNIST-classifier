@@ -50,7 +50,7 @@ def extract(img):
 
         while numpy.sum(img[:,-1]) == 0:
             img = img[:,:-1]
-    
+
     return img
 
 def shrink_center(img):
@@ -97,7 +97,7 @@ def binarize(img):
                     img[i][j] = 255
                 else:
                     img[i][j] = 0
-        
+
     return img
 
 def preprocess(img):
@@ -105,5 +105,5 @@ def preprocess(img):
     img2 = shrink_center(img1)
     img3 = fit(img2)
     img4 = recenter(img3)
-            
+
     return img2, img3, img4
