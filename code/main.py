@@ -46,11 +46,13 @@ elif args.mode == "test":
 
     accuracy = 1 - numpy.mean(incorrect)
     accuracy = round(accuracy*100, 1)
-    print("Accuracy: {}%".format(accuracy))
+    print("\nAccuracy: {}%".format(accuracy))
 
-    utils.plot_images(images=x_test[incorrect],
-                      cls_true=cls_test[incorrect],
-                      cls_pred=cls_pred[incorrect])
+    rep = input("\nAfficher des exemples d'erreurs ? (Y/n)")
+    if rep == "" or rep == "Y":
+        utils.plot_images(images=x_test[incorrect],
+                         cls_true=cls_test[incorrect],
+                         cls_pred=cls_pred[incorrect])
 
 elif args.mode == "use":
     ui.build(model)
