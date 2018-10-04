@@ -3,6 +3,11 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 def get_args():
     parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
     parser.add_argument(
+        "--out",
+        help="Nom du fichier dans lequel le modèle est sauvegardé (REQUIRED)",
+        required=True
+    )
+    parser.add_argument(
         "--mode",
         help="""Mode d'utilisation : 'train', 'test' ou 'use' (REQUIRED)
     - train: Entraîne le modèle sur les données d'entraînement
@@ -12,8 +17,8 @@ def get_args():
     )
     parser.add_argument(
         "--model",
-        help="Nom du modèle (REQUIRED)",
-        required=True
+        help="Nom du modèle (ou classe de généralisations) (default: deepnet1)",
+        default="deepnet1"
     )
     parser.add_argument(
         "--epochs",

@@ -7,7 +7,12 @@ import utils
 
 args = arguments.get_args()
 
-model = utils.load_model(args.model)
+if utils.model_already_exists(args.out):
+    model = utils.load_model(args.out)
+elif args.mode == "train":
+    model = getattr(utils.models, args.model)()
+else:
+    raise ValueError("Aucun modèle à l'emplacement donné par --out")
 model.summary()
 
 if args.mode == "train":
@@ -27,8 +32,8 @@ if args.mode == "train":
               y=y_train,
               epochs=args.epochs,
               batch_size=128)
-    
-    utils.save_model(model, args.model)
+
+    utils.save_model(model, args.out)
 
 elif args.mode == "test":
     (_, _), (x_test, y_test) = utils.get_data()
