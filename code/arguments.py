@@ -38,6 +38,12 @@ def get_args():
         default=2e-4
     )
     parser.add_argument(
+        "--batch-size",
+        help="Nombre d'exemples utilisés pour chaque minimisation (default: 128)",
+        type=int,
+        default=128
+    )
+    parser.add_argument(
         "--examples",
         help="Nombre de données d'entraînement (default: toutes i.e. 60000)",
         type=int,

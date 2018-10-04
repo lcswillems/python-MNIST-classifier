@@ -31,7 +31,7 @@ if args.mode == "train":
     model.fit(x=x_train,
               y=y_train,
               epochs=args.epochs,
-              batch_size=128)
+              batch_size=args.batch_size)
 
     utils.save_model(model, args.out)
 
