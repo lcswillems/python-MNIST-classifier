@@ -3,7 +3,7 @@ from tensorflow.python.keras.layers import Dense, Activation, Flatten, Conv2D, M
 
 import utils
 
-def densenet1():
+def deepnet1():
     model = Sequential()
 
     model.add(Flatten(input_shape=utils.IMG_SHAPE))
@@ -13,7 +13,7 @@ def densenet1():
 
     return model
 
-def densenet2():
+def deepnet2():
     model = Sequential()
 
     model.add(Flatten(input_shape=utils.IMG_SHAPE))
