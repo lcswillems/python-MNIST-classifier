@@ -1,5 +1,5 @@
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout
+from tensorflow.keras.layers import Flatten, Reshape, Dense, Activation, Conv2D, MaxPooling2D, Dropout
 
 import utils
 
@@ -29,8 +29,9 @@ def deepnet2():
 def convnet():
     model = Sequential()
 
-    model.add(Conv2D(32, kernel_size=(3, 3),
-                     input_shape=utils.IMG_SHAPE))
+    model.add(Reshape((*utils.IMG_SHAPE, 1), input_shape=utils.IMG_SHAPE))
+
+    model.add(Conv2D(32, kernel_size=(3, 3)))
     model.add(Activation("relu"))
 
     model.add(Conv2D(64, kernel_size=(3, 3)))

@@ -5,28 +5,32 @@ import scipy
 import skimage
 
 IMG_SIZE = 28
-IMG_SHAPE = (IMG_SIZE, IMG_SIZE, 1)
+IMG_SHAPE = (IMG_SIZE, IMG_SIZE)
 IMG_CENTER_SIZE = 20
 NUM_CLASSES = 10
 NUM_PROCESS_STEPS = 4
 
-def get_data(num_train_examples=None):
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+def get_train_data(num_train_examples=None):
+    (x_train, y_train), _ = mnist.load_data()
     if num_train_examples != None:
         x_train = x_train[:num_train_examples]
         y_train = y_train[:num_train_examples]
 
     x_train = format_x(x_train)
-    x_test = format_x(x_test)
-
     y_train = format_y(y_train)
+
+    return x_train, y_train
+
+def get_test_data():
+    _, (x_test, y_test) = mnist.load_data()
+
+    x_test = format_x(x_test)
     y_test = format_y(y_test)
 
-    return (x_train, y_train), (x_test, y_test)
+    return x_test, y_test
 
 def format_x(x):
     x = numpy.array(x)
-    x = x.reshape(x.shape[0], IMG_SIZE, IMG_SIZE, 1)
     x = x.astype("float32")
     x /= 255
     return x
@@ -72,7 +76,7 @@ def shrink_center(img):
     return img
 
 def fit(img):
-    new_img = numpy.zeros((IMG_SIZE, IMG_SIZE), dtype=img.dtype)
+    new_img = numpy.zeros(IMG_SHAPE, dtype=img.dtype)
 
     new_img[:img.shape[0], :img.shape[1]] = img
 
