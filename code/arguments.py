@@ -27,7 +27,7 @@ def get_args():
     )
     parser.add_argument(
         "--epochs",
-        help="Nombre de minimisations (défaut: 1)",
+        help="Nombre d'epochs utilisé par le minimiseur (défaut: 1)",
         type=int,
         default=1
     )
