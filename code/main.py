@@ -16,9 +16,9 @@ else:
 model.summary()
 
 if args.mode == "train":
-    if args.optimizer == "sgd":
+    if args.minimizer == "sgd":
         optimizer = SGD(lr=args.lr)
-    elif args.optimizer == "adam":
+    elif args.minimizer == "adam":
         optimizer = Adam(lr=args.lr)
     else:
         raise ValueError("Nom d'optimiseur inconnu")
