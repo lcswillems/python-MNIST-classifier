@@ -189,37 +189,32 @@ Essayez de créer un maximum de modèles, de les entraîner et de voir leur pré
 
 ## Pour aller plus loin
 
-Vous avez fait un bel effort et avez sûrement beaucoup progressé ! Avant de continuer, [voici une ressource](https://playground.tensorflow.org/) que vous pouvez tester pour vous familiariser plus avec les réseaux de neurones. Vous pouvez vous amuser à replacer la fonction ReLU par d'autres fonctions, à changer le learning rate, le nombre de layers, les données, etc...
+Vous avez fait un bel effort et avez sûrement beaucoup progressé, mais il ne faut pas vous arrêter en si bon chemin !
 
-Maintenant, continuez vos efforts, vous pouvez aller plus loin encore et réaliser des choses remarquables. Le deep learning est en plein essort et permet d'accomplir des tâches incroyables. J'ai récemment découvert le **transfert de style**. Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) :
+Le deep learning est un domaine en plein essort depuis ces dernières années, comme j'ai essayé de le montrer à la fin de mon exposé. Par exemple, il est maintenant possible de **transférer le style** d'une image sur une autre (plein d'exemples). Voici un exemple (et plein d'autres [ici](https://github.com/jcjohnson/neural-style)) où à partir du tableau "[La nuit étoilée](https://fr.wikipedia.org/wiki/La_Nuit_%C3%A9toil%C3%A9e)" de Van Gogh et d'une photo du campus de Stanford, le réseau crée une photo du campus de Stanford avec le style de Van Gogh :
 
 <p align="center"><img src="README-images/style-transfer.png"></p>
 
-Le modèle transforme une photo du campus de Stanford et un tableau "[La nuit étoilée](https://fr.wikipedia.org/wiki/La_Nuit_%C3%A9toil%C3%A9e)" de Van Gogh en un tableau du campus de Stanford peint avec le style de Van Gogh !
+**Que faire après ?**
 
-Vous pouvez aussi coloriser des images. Voici un exemple (et plein d'autres [ici](https://github.com/satoshiiizuka/siggraph2016_colorization)) :
+Très facilement, vous pouvez tester quelques petits outils pour avoir une meilleure intuition sur le fonctionnement des réseaux de neurones :
 
-<p align="center"><img src="README-images/colorize.png"></p>
+- [Tensorflow Playground](https://playground.tensorflow.org/) pour plus vous familiariser avec les réseaux de neurones profonds. Vous pouvez vous amuser à remplacer la fonction ReLU par d'autres fonctions, à changer le learning rate, le nombre de layers, les données, etc...
+- [Visualization of ConvNet](http://scs.ryerson.ca/~aharley/vis/conv/) pour plus vous familiariser avec les réseaux de neurones convolutifs.
 
-Certaines autres applications incroyables de ce domaine sont répertoriées dans [cet article](http://www.yaronhadad.com/deep-learning-most-amazing-applications/).
+Mais tester ces petits outils ne vous permettra pas de vraiment maîtriser le deep learning pour obtenir vos premiers résultats.
 
-Toutefois, pour être capable de reproduire ces résultats voire créer vos propres résultats (peut-être aurez-vous une idée incroyable aussi), il vous faut continuer à étudier.
+**Comment devenir un maître du deep learning ?**
 
-Je pense qu'il vous faut :
-- maîtriser Python,
-- maîtriser la théorie du deep learning,
-- beaucoup pratiquer.
+3 étapes sont nécessaires selon moi :
 
-Pour maîtriser Python, vous pouvez suivre le cours "[Apprendre à programmer en Python](https://openclassrooms.com/courses/apprenez-a-programmer-en-python)" de OpenClassrooms (sous format texte, vidéo, livre) qui vous donnera une compréhension complète du langage. Pour rentrer plus rapidement dans le langage mais moins en profondeur, vous pouvez regarder ma série de vidéos pour "[Apprendre Python](https://www.youtube.com/watch?v=A5dl7XRnmM4&list=PL5TvtEevd4IbBjsZe94pdU8r98DVr71rm)".
+1. maîtriser Python;
+2. maîtriser la théorie du deep learning;
+3. beaucoup pratiquer.
 
-Pour maîtriser la théorie, je vous recommande très fortement de suivre la spécialisation "[Deep Learning](https://www.coursera.org/specializations/deep-learning)" (vous pouvez la suivre même en étant au lycée !). Le problème est que lorsqu'on accède à la page, suivre les cours semblent payant... Après des recherches sur internet, j'ai trouvé les pages spécifiques aux 5 cours :
-- Cours 1 : "[Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning/home/welcome)"
-- Cours 2 : "[Improving Deep Neural Networks](https://www.coursera.org/learn/deep-neural-network/home/welcome)"
-- Cours 3 : "[Structuring Machine Learning Projects](https://www.coursera.org/learn/machine-learning-projects/home/welcome)"
-- Cours 4 : "[Convolutional Neural Networks](https://www.coursera.org/learn/convolutional-neural-networks/home/welcome)"
-- Cours 5 : "[Sequence Models](https://www.coursera.org/learn/nlp-sequence-models)"
+Pour maîtriser Python, vous pouvez suivre le cours "[Apprendre à programmer en Python](https://openclassrooms.com/courses/apprenez-a-programmer-en-python)" de OpenClassrooms qui vous donnera une compréhension complète du langage ou alors le cours "[Programming for everybody](https://www.coursera.org/learn/python)" de Coursera.
 
-En allant sur ces pages, on pourrait encore penser que suivre les cours est payant, mais lorsque vous cliquez sur "Enroll", un petit texte "Audit the course" s'affiche. Cliquez sur "Audit". Vous pouvez accéder gratuitement à la partie la plus importante du cours : les vidéos. Vous pouvez apprendre beaucoup avec cela.
+Pour maîtriser la théorie, là, malheureusement, ça coince. J'ai beaucoup cherché et n'ai pas réussi à trouver des ressources accessibles au grand public... (si vous en connaissez, donnez les moi !). Pour les personnes ayant un niveau bac+1 en maths, vous pouvez lire "[The Deep Learning Book](https://www.deeplearningbook.org/)" (livre que j'ai lu pour apprendre).
 
 Pour pratiquer, je vous recommende de faire [les TPs confectionnés par Hvass](https://github.com/Hvass-Labs/TensorFlow-Tutorials) qui sont d'une qualité rarissime ! Si vous n'avez pas beaucoup de temps, vous pouvez vous contenter de faire les TPs 1, 2, 3, 4, 5 et 17 qui vous donneront de très bonnes bases avec Tensorflow, et ensuite, de lire les autres TPs attentivement. A travers ces TPs, vous apprendrez entre autre :
 - [le transfert de style](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/15_Style_Transfer.ipynb)
@@ -227,6 +222,4 @@ Pour pratiquer, je vous recommende de faire [les TPs confectionnés par Hvass](h
 - [les rêves profonds](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/14_DeepDream.ipynb)
 - ...
 
-Voilà ! Vous avez de quoi faire ! Ne croyez pas que vous ne pouvez pas le faire. Je vous jure, vous pouvez ! Avoir les bases du domaine ne va pas être sans difficulté, mais c'est loin d'être infaisable ! Beaucoup de personnes se convertissent rapidement au deep learning. Personnellement, je n'ai commencé à m'intéresser au domaine qu'en Master 1 (tout seul, en suivant le cours de machine learning de l'ENS) parce que je ne l'ai découvert qu'en M1... Si je l'avais découvert au lycée, à coup sûr, je me serais lancé dans cette aventure.
-
-Bon courage ! Battez-vous, percévérez. Votre travail paiera et vous pourrez rapidement peut-être créer des choses incroyables ! Tenez-moi au courant si vous le pouvez :) .
+Voilà ! Vous avez de quoi faire ! Bon courage ! Battez-vous, percévérez. Votre travail paiera et vous pourrez rapidement peut-être créer des choses incroyables ! Tenez-moi au courant si vous le pouvez :) .
