@@ -9,15 +9,15 @@ Si jamais vous rencontrez un quelconque problème, vous pouvez ouvrir une nouvel
 **Sommaire :**
 
 - [Installation](#installation)
-    - [1. Python 3](#1-python-3)
-    - [2. Bibliothèques Python](#2-bibliothèques-python)
-    - [3. Code du classifieur](#3-code-du-classifieur)
+  - [1. Python 3](#1-python-3)
+  - [2. Bibliothèques Python](#2-bibliothèques-python)
+  - [3. Code du classifieur](#3-code-du-classifieur)
 - [Utilisation](#utilisation)
-    - [Entraînement du réseau](#entraînement-du-réseau)
-    - [Test du réseau](#test-du-réseau)
-    - [Utilisation du réseau](#utilisation-du-réseau)
+  - [Entraînement du réseau](#entraînement-du-réseau)
+  - [Test du réseau](#test-du-réseau)
+  - [Utilisation du réseau](#utilisation-du-réseau)
 - [Structure du code](#structure-du-code)
-    - [Création d'un modèle](#création-dun-modèle)
+  - [Création d'un modèle](#création-dun-modèle)
 - [Pour aller plus loin](#pour-aller-plus-loin)
 
 ## Installation
@@ -63,8 +63,8 @@ Voilà, l'installation est terminée ! Vous pouvez dès à présent utiliser le 
 ## Utilisation
 
 Pour utiliser le code :
-- sous Windows, ouvrez un invité de commande dans le dossier et déplacez vous dans le dossier `code` avec la commande `cd` ([un petit tutoriel](https://www.youtube.com/watch?v=sjaCgavMO18) si besoin). Vous pouvez aussi directement ouvrir l'invité de commande dans le dossier `code` en appuyant sur la touche `shift` puis en faisant clique droit sur le dossier `code` puis sur "Ouvrir une fenêtre de commande ici" ([un petit tutoriel](https://www.howtogeek.com/howto/windows-vista/stupid-geek-tricks-open-a-command-prompt-from-the-desktop-right-click-menu/) si besoin).
-- sous Linux ou Mac, ouvrez un terminal et déplacez-vous dans le dossier `code` avec la commande `cd`.
+- sous Windows, ouvrez un invité de commande dans ce dossier avec la commande `cd` ([un petit tutoriel](https://www.youtube.com/watch?v=sjaCgavMO18) si besoin). Vous pouvez aussi directement ouvrir l'invité de commande dans le dossier `code` en appuyant sur la touche `shift` puis en faisant clic droit dans le dossier puis sur "Ouvrir une fenêtre de commande ici" ([un petit tutoriel](https://www.howtogeek.com/howto/windows-vista/stupid-geek-tricks-open-a-command-prompt-from-the-desktop-right-click-menu/) si besoin).
+- sous Linux ou Mac, ouvrez un terminal et déplacez-vous dans ce dossier avec la commande `cd`.
 
 Dans cet invité de commande / terminal, vous pouvez exécuter des commandes. Par exemple, pour exécuter un programme Python contenu dans le fichier `monfichier.py`, vous pouvez utiliser la commande suivante :
 
@@ -168,7 +168,7 @@ Enfin, puisque nous venons de parler des transformations appliquées au chiffre 
 
 ## Structure du code
 
-Le dossier `code` contient :
+Ce dossier contient :
 - `main.py` : fichier principal
 - `arguments.py` : fichier où sont définis les arguments de `main.py`
 - `models.py` : fichier où sont définis les modèles `deepnet1`, `deepnet2`, `convnet`
