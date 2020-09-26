@@ -2,7 +2,7 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
 import numpy
 import scipy
-import skimage
+import skimage.transform
 
 IMG_SIZE = 28
 IMG_SHAPE = (IMG_SIZE, IMG_SIZE)
