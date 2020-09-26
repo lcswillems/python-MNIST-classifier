@@ -27,8 +27,9 @@ Le classifieur requière quelques autres programmes pour fonctionner. Il nous fa
 ### 1. Python 3
 
 La première étape de la procédure consiste à installer Python 3, le langage de programmation dans lequel est écrit le classifieur. Voici, pour chaque système d'exploitation, la manière la plus simple de faire :
+
 - pour Windows et Mac, [télécharger Python 3](https://www.python.org/downloads/) puis l'installer. Si jamais vous avez besoin de plus de détails, vous pouvez regarder [cette vidéo Youtube](https://www.youtube.com/watch?v=wp15jyylSEQ).
-- pour Linux, ouvrir un terminal puis exécuter `sudo apt update` puis `sudo apt install python3`.
+- pour Linux, ouvrir un terminal puis exécuter `sudo apt update` puis `sudo apt install python3 python3-pip`.
 
 ### 2. Bibliothèques Python
 
@@ -52,6 +53,12 @@ Si vous êtes sous Windows, ouvrez l'invité de commande (tapez "Invité de comm
 pip3 install tensorflow pyqt5 matplotlib h5py numpy scipy scikit-image
 ```
 
+Alternativement, pour simplifier la ligne de commande à exécuter pour installer les librairies, vous pouvez lister les librairies dans un fichier `requirements.txt` et exécuter :
+
+```
+pip3 install -r requirements.txt
+```
+
 ### 3. Code du classifieur
 
 La dernière étape de la procédure consiste à télécharger le code du classifieur. Pour ce faire, cliquez sur le bouton "Clone or download" en haut de [la page du dépôt](https://github.com/lcswillems/python-MNIST-classifier), puis sur "Download ZIP". A la fin du téléchargement, dézippez le fichier.
@@ -63,34 +70,45 @@ Voilà, l'installation est terminée ! Vous pouvez dès à présent utiliser le 
 ## Utilisation
 
 Pour utiliser le code :
+
 - sous Windows, ouvrez un invité de commande dans ce dossier avec la commande `cd` ([un petit tutoriel](https://www.youtube.com/watch?v=sjaCgavMO18) si besoin). Vous pouvez aussi directement ouvrir l'invité de commande dans le dossier `code` en appuyant sur la touche `shift` puis en faisant clic droit dans le dossier puis sur "Ouvrir une fenêtre de commande ici" ([un petit tutoriel](https://www.howtogeek.com/howto/windows-vista/stupid-geek-tricks-open-a-command-prompt-from-the-desktop-right-click-menu/) si besoin).
 - sous Linux ou Mac, ouvrez un terminal et déplacez-vous dans ce dossier avec la commande `cd`.
 
-Dans cet invité de commande / terminal, vous pouvez exécuter des commandes. Par exemple, pour exécuter un programme Python contenu dans le fichier `monfichier.py`, vous pouvez utiliser la commande suivante :
+Dans cet invité de commande / terminal, vous pouvez exécuter des commandes. Par exemple, pour exécuter un programme Python contenu dans le fichier `fichier.py`, vous pouvez utiliser la commande suivante :
 
-```python3 monfichier.py```
+```
+python3 fichier.py
+```
 
 Le seul fichier que vous allez toujours exécuter est `main.py` ("main" veut dire "principal" en français). Les autres fichiers seront seulement utilisés par le fichier `main.py`. Vous pouvez essayer la commande suivante :
 
-```python3 main.py```
+```
+python3 main.py
+```
 
 Vous devez obtenir l'erreur suivante : `main.py: error: the following arguments are required: --out, --mode`. La raison est que le fichier `main.py` a besoin de recevoir des précisions de l'utilisateur sur ce qu'il doit faire. Ces précisions s'appellent des **arguments**. Certains arguments, dits **optionnels**, ont des valeurs par défaut. Un argument optionnel peut ne pas être spécifié par l'utilisateur, et s'il ne l'est pas, sa valeur par défaut est utilisée par le programme. Certains autres arguments, dits **obligatoires**, n'ont pas de valeur par défaut. Dans ce cas, l'utilisateur doit tout le temps spécifier leurs valeurs.
 
 Dans notre cas, 2 arguments sont obligatoires :
+
 - `--out` : le fichier dans lequel le réseau de neurone est ou doit être enregistré.
 - `--mode` : le mode du programme. Il doit valloir soit `train`, soit `test`, soit `use`, c'est-à-dire que le programme doit soit entraîner le réseau de neurones, soit le tester, soit l'utiliser pour classifier des nouveaux chiffres entrés par l'utilisateur. L'utilité de ces modes est développée plus en détail dans les sous-parties suivantes.
 
 Et 6 arguments sont optionnels :
+
 - `--model` : nom du **modèle** (ou classe de généralisation) du réseau de neurones. 3 modèles sont disponibles de base : `deepnet1`, `deepnet2` et `convnet`. Pour ajouter vos propres modèles, lisez [cette sous-partie](#création-dun-modèle).
 - ...
 
 La liste de tous les arguments (obligatoires et optionnels) peut être obtenue en exécutant :
 
-```python3 main.py --help```
+```
+python3 main.py --help
+```
 
 Voici un exemple de commande :
 
-```python3 main.py --out dn1_lr001 --mode train --model deepnet1 --lr 0.001```
+```
+python3 main.py --out dn1_lr001 --mode train --model deepnet1 --lr 0.001
+```
 
 ### Entraînement du réseau
 
@@ -98,7 +116,9 @@ Le premier mode d'utilisation du programme est `train`. Il vous permet d'entraî
 
 Par exemple, si vous souhaitez entraîner un réseau de neurones de modèle `deepnet2`, vous pouvez exécuter :
 
-```python3 main.py --out monreseau --mode train --model deepnet2 --epochs 5```
+```
+python3 main.py --out reseau --mode train --model deepnet2 --epochs 5
+```
 
 Lorsque vous exécutez cette commande :
 
@@ -109,11 +129,14 @@ Lorsque vous exécutez cette commande :
 
 Une fois la commande précédente exécutée, vous pouvez continuer d'entraîner votre réseau en exécutant de nouveau la commande. Vous n'avez plus besoin de mettre l'argument `--model` et pouvez changer, par exemple, le nombre d'epochs :
 
-```python3 main.py --out monreseau --mode train --epochs 10```
+```
+python3 main.py --out reseau --mode train --epochs 10
+```
 
 Pendant l'entraînement, l'erreur devrait normalement diminuer et la précision augmenter. Cela signifie que le réseau fait de moins en moins d'erreurs sur les données d'**entraînement**. Au bout d'un certain temps, l'erreur et la précision vont finir par stagner. Cela signifie que le réseau a atteint ses performances maximales sur les données d'entraînement. Avec les valeurs par défaut des arguments, on peut donc facilement trouver dans le modèle `deepnet2` un réseau avec une erreur de 0.015 et une précision de 0.995 après 50 epochs.
 
 Vous pouvez aussi modifier la valeur des autres arguments optionnels pour influencer la vitesse d'apprentissage du réseau. Les valeurs par défaut ne sont pas forcément les "meilleures" valeurs puisqu'elles dépendent du modèle auquel le réseau appartient. Sur le modèle `deepnet2`, vous pouvez essayer de voir l'impact :
+
 - du learning rate en rajoutant `--lr X` où X est un petit nombre (entre 0.1 et 0.00001 typiquement). Sa valeur par défaut est 0.0002. Plus le learning rate est grand, plus les paramètres varient à chaque étape. Si vous prenez 0.001 pour `X`, vous pouvez remarquer que le réseau apprend plus rapidement ! Si vous prenez 0.01 pour `X`, il apprend encore plus rapidement au début, mais l'apprentissage devient vite chaotique : l'erreur augmente, diminue, augmente (elle oscille) et n'arrive pas à descendre en dessous de 0.03. Enfin, si vous prenez 0.1 pour `X`, l'apprentissage est chaotique dès le début. Une stratégie classique à commencer l'entraînement avec un learning rate grand puis à le diminuer progressivement.
 - du minimiseur en rajoutant `--minimizer X` où X peut être `sgd` ou `adam`. `sgd` est l'algorithme de la descente de gradient stochastique. `adam` est une version améliorée de `sgd` et est l'algorithme utilisé par défaut : il performe bien mieux que `sgd`. Vous pouvez essayer en rajoutant `--minimizer sgd`.
 - du nombre de données utilisées pour l'entraînement en rajoutant `--examples X` où X est le nombre d'exemples d'entraînement pouvant aller de 0 à 60000 (c'est-à-dire tous les exemples d'entraînement).
@@ -121,12 +144,14 @@ Vous pouvez aussi modifier la valeur des autres arguments optionnels pour influe
 Maintenant que vous avez bien entraîné le réseau de modèle `deepnet2`, vous pouvez tester son niveau d'apprentissage en suivant les instructions de [la sous-partie suivante](#test-du-modele) ou alors entraîner un réseau d'un autre modèle.
 
 2 autres modèles sont disponibles de base :
+
 - `deepnet1` contient 1 layer dense contrairement à `deepnet2` qui en contient 2. Il est moins performant que ce dernier. Vous pouvez arriver à une erreur de 0.25 et une précision de 0.93 après 50 epochs.
 - `convnet` est plus performant que `deepnet2`. Il utilise une certaine opération mathématique appelée **convolution** (vous pouvez lire [cet excellent tutoriel pour débutant](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) pour comprendre et [ce site internet](http://scs.ryerson.ca/~aharley/vis/conv/) pour visualiser). Vous pouvez arriver à une erreur de 0.03 et une précision de 0.99 en 10 epochs.
 
 Notez que l'entraînement de réseaux de `convnet` est beaucoup plus lent !! Commencer avec un grand learning rate (0.01) puis le diminuer progressivement pour arriver à 0.0001 pourra vous économiser beaucoup de temps :
-- ```python3 main.py --out monreseau2 --mode train --model convnet --epochs 5 --lr 0.01```
-- ```python3 main.py --out monreseau2 --mode train --epochs 20```
+
+- `python3 main.py --out reseau2 --mode train --model convnet --epochs 5 --lr 0.01`
+- `python3 main.py --out reseau2 --mode train --epochs 20`
 
 ### Test du réseau
 
@@ -134,16 +159,20 @@ Une fois que vous avez entraîné votre réseau, il est temps de le tester, de v
 
 Pour ce faire, il vous faut utiliser le mode `test` en exécutant, par exemple, la commande suivante :
 
-```python3 main.py --out monreseau --mode test```
+```
+python3 main.py --out reseau --mode test
+```
 
 La précision sur les données de test s'affiche. Vous pouvez aussi afficher 16 erreurs commises par le réseau.
 
 Normalement, vous devez obtenir les précisions suivantes à quelques choses près :
+
 - 92.6% pour les meilleurs réseaux de `deepnet1`
 - 97.8% pour les meilleurs réseaux de `deepnet2`
 - 98.8% pour les meilleurs réseaux de `convnet`
 
 Nous pouvons faire deux remarques importantes :
+
 1. Sur les données d'entraînement, les meilleurs réseaux de `deepnet2` ont une précision similaire voire meilleure que ceux de `convnet` alors qu'ils ont une précision nettement inférieure sur les données de test.
 2. Les réseaux ont des précisions supérieures sur les données d'entraînement que sur les données de test. On dit qu'ils **sur-interprètent**. Ce phénomène se passe aussi lorsque les humains apprennent : ils sont meilleurs sur des problèmes qu'ils ont déjà vus.
 
@@ -153,11 +182,14 @@ Enfin, maintenant que vous avez obtenu un réseau performant, vous pouvez l'util
 
 Pour ce faire, il vous faut utiliser le mode `use` en exécutant, par exemple, la commande suivante :
 
-```python3 main.py --out monreseau --mode use```
+```
+python3 main.py --out reseau --mode use
+```
 
 Vous pouvez dessiner votre chiffre dans le gros cadre noir. A chaque fois que vous relâchez votre clic, le réseau classifie le chiffre dessiné.
 
 Vous pouvez remarquer 4 petits carrés noirs à droite du gros carré noir dans lesquels le chiffre dessiné apparaît légèrement modifié. Voici plus précisément quelles sont les transformations :
+
 1. Dans le 1er petit carré, la partie noire tout autour du chiffre dessiné a été supprimée puis le chiffre a été redimensionné en conservant les proportions pour qu'il fasse moins 20 pixels de large et 20 pixels de hauteur.
 2. Dans le 2e petit carré, des pixels noirs ont été ajoutés en bas et à droite pour que le chiffre fasse exactement 20 pixels de large et 20 pixels de hauteur.
 3. Dans le 3e petit carré, le chiffre a été recentré en fonction de son [barycentre](https://fr.wikipedia.org/wiki/Barycentre).
@@ -169,19 +201,21 @@ Enfin, puisque nous venons de parler des transformations appliquées au chiffre 
 ## Structure du code
 
 Ce dossier contient :
+
 - `main.py` : fichier principal
 - `arguments.py` : fichier où sont définis les arguments de `main.py`
 - `models.py` : fichier où sont définis les modèles `deepnet1`, `deepnet2`, `convnet`
 - `ui.py` : fichier où est définie l'interface graphique pour le mode `use`
 - `utils` : un dossier contenant les fichiers :
-    - `data.py` permettant de charger les données et de faire les 4 transformations requises dans le mode `use`
-    - `model.py` permettant de charger et de sauvegarder les paramètres d'un réseau de neurones
-    - `plot.py` permettant d'afficher des exemples d'erreurs dans le mode `test`
+  - `data.py` permettant de charger les données et de faire les 4 transformations requises dans le mode `use`
+  - `model.py` permettant de charger et de sauvegarder les paramètres d'un réseau de neurones
+  - `plot.py` permettant d'afficher des exemples d'erreurs dans le mode `test`
 - `storage` : un dossier contenant des sauvegardes des paramètres des différents réseaux
 
 ### Création d'un modèle
 
 Si vous voulez créer votre propre modèle `X`, vous devez créer une fonction `X` dans le fichier `models.py`. Voici des idées de modèle que vous pourriez créer :
+
 - Vous pouvez enlever / ajouter des layers au modèle `deepnet2` et diminuer / agrandir la taille des layers.
 - Vous pouvez enlever / ajouter plus de layers de convolution au modèle `deepnet2`, enlever les max-pooling, changer la taille des kernels, etc...
 
@@ -217,6 +251,7 @@ Pour maîtriser Python, vous pouvez suivre le cours "[Apprendre à programmer en
 Pour maîtriser la théorie, là, malheureusement, ça coince. J'ai beaucoup cherché et n'ai pas réussi à trouver des ressources accessibles au grand public... (si vous en connaissez, donnez les moi !). Pour les personnes ayant un niveau bac+1 en maths, vous pouvez lire "[The Deep Learning Book](https://www.deeplearningbook.org/)" (livre que j'ai lu pour apprendre).
 
 Pour pratiquer, je vous recommende de faire [les TPs confectionnés par Hvass](https://github.com/Hvass-Labs/TensorFlow-Tutorials) qui sont d'une qualité rarissime ! Si vous n'avez pas beaucoup de temps, vous pouvez vous contenter de faire les TPs 1, 2, 3, 4, 5 et 17 qui vous donneront de très bonnes bases avec Tensorflow, et ensuite, de lire les autres TPs attentivement. A travers ces TPs, vous apprendrez entre autre :
+
 - [le transfert de style](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/15_Style_Transfer.ipynb)
 - [la traduction de texte](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/21_Machine_Translation.ipynb)
 - [les rêves profonds](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/14_DeepDream.ipynb)
